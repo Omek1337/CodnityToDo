@@ -1,0 +1,43 @@
+﻿@model CodnityToDo.Views.ToDoItem.EditModel
+@{
+}
+<form method="post">
+	<input hidden asp-for="ToDoItem.Id" value="@ViewBag.todoItem.Id" />
+	<input hidden asp-for="ToDoItem.Created" type="datetime" value="@ViewBag.todoItem.Created" />
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary pl-3">Edit ToDo item</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3" hidden>
+			<input asp-for="ToDoItem.UserName" class="form-control" value="@ViewBag.todoItem.UserName" />
+			<label asp-for="ToDoItem.UserName"></label>
+			<span asp-validation-for="ToDoItem.UserName" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="ToDoItem.Description"></label>
+			<input asp-for="ToDoItem.Description" class="form-control" value="@ViewBag.todoItem.Description" />
+			<span asp-validation-for="ToDoItem.Description" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="ToDoItem.DeadlineDate"></label>
+			<input asp-for="ToDoItem.DeadlineDate" class="form-control" type="datetime" value="@ViewBag.todoItem.DeadlineDate" />
+			<span asp-validation-for="ToDoItem.DeadlineDate" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="ToDoItem.Status"></label>
+			@if (ViewBag.todoItem.Status == true)
+			{
+				<input type="checkbox" asp-for="ToDoItem.Status" checked />
+			} else
+			{
+				<input type="checkbox" asp-for="ToDoItem.Status" />
+			}
+			<span asp-validation-for="ToDoItem.Status" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+		<a asp-controller="ToDoItem" asp-action="Index" class="btn btn-secondary" style="width:150px;"> Back to List</a>
+	</div>
+
+</form>

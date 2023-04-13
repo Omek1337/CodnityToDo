@@ -1,0 +1,46 @@
+﻿@page
+@using Entities.Models;
+@{
+}
+<div class="row">
+    @if (User.Identity != null)
+    {
+        <a class="btn btn-default" asp-controller="ToDoItem" asp-action="Create" asp-route-name="@User.Identity.Name">Create</a>
+    }
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">DeadlineDate</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Edit item</th>
+                    <th scope="col">Delete item</th>
+                </tr>
+            </thead>
+            <tbody id="AllAvailableDrives">
+                @foreach (var item in ViewBag.todos)
+                {
+                    <tr>
+                        <td>@item.Description</td>
+                        <th>@item.Status</th>
+                        <td>@item.DeadlineDate</td>
+                        <td>@item.Created</td>
+                        <td>@item.Updated</td>
+                        <td>
+                            <a class="btn btn-default" asp-controller="ToDoItem" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-default" asp-controller="ToDoItem" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

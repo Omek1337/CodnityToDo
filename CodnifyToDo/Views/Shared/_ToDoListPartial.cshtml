@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Entities.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@*@model List<ToDoItem>*@
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (User.Identity != null)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="ToDoItem" asp-action="Index" asp-route-name="@User.Identity.Name">ToDoItems</a>
+        </li>
+    }
+    
+}
